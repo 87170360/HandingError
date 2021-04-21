@@ -18,6 +18,7 @@ func queryUser() error {
 	var name string
 	err = db.QueryRow("select name from users where id = ?", 1).Scan(&name)
 	if err != nil {
+		//封装上下文信息，返回上层
 		return errors.Wrap(err, fmt.Sprintf("select name from users where id =%v", 1))
 	}
 	return nil
